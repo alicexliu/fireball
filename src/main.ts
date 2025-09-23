@@ -14,8 +14,9 @@ import ShaderProgram, {Shader} from './rendering/gl/ShaderProgram';
 const controls = {
   tesselations: 5,
   color: [255, 0, 0],
-  gradientColor: [255, 255, 0],
+  gradientColor: [255, 255, 100],
   octaves: 6,
+  amplitude: 0.5,
   'Load Scene': loadScene, // A function pointer, essentially
   'Set To Default': setDefault, // reset to default values
 };
@@ -34,8 +35,9 @@ function loadScene() {
 function setDefault() {
   controls.tesselations = 5;
   controls.color = [255, 0, 0];
-  controls.gradientColor = [255, 255, 0];
+  controls.gradientColor = [255, 255, 100];
   controls.octaves = 6;
+  controls.amplitude = 0.5;
 }
 
 function main() {
@@ -51,6 +53,7 @@ function main() {
   const gui = new DAT.GUI();
   gui.add(controls, 'tesselations', 0, 8).step(1);
   gui.add(controls, 'octaves', 1, 16).step(1); 
+  gui.add(controls, 'amplitude', 0.1, 1.0).step(0.1);
   gui.addColor(controls, 'color');
   gui.addColor(controls, 'gradientColor');
   gui.add(controls, 'Set To Default');
@@ -111,7 +114,7 @@ function main() {
 
     renderer.render(camera, fireball, [
       icosphere
-    ], controls.color, time, controls.octaves);
+    ], controls.color, controls.gradientColor, time, controls.octaves, controls.amplitude);
     stats.end();
 
     // Tell the browser to call `tick` again whenever it renders a new frame

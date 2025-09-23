@@ -1,5 +1,20 @@
 # [Project 1: Noise](https://github.com/CIS-566-Fall-2022/hw01-fireball-base)
 
+## Project Description
+**Live Demo:** https://aliceliu.xyz/fireball/
+
+<p align="center">
+  <img src="./fireball.png" height="300"/>
+</p>
+
+In this project, I created an interactable fireball using a variety of functions.
+
+In the vertex shader, I used sine and cosine functions for the small ripples in the fireball, as well as the wave to simulate a windy effect. I used 3D FBM noise to distort the upper part of the sphere to appear more spiky and fire-like. I also scaled down the fireball for be more narrow at the top and larger at the bottom.
+
+In the fragment shader, I lerped the base and gradient colors together to make a smooth transition between the two. I also created a lighter color for the bottom and used 3D Perlin Noise in order to create a sharper fiery edge.
+
+Users are able to adjust the fireball's base and gradient colors, as well as octaves and amplitude of the noise.
+
 ## Objective
 
 Get comfortable with using WebGL and its shaders to generate an interesting 3D, continuous surface using a multi-octave noise algorithm.
